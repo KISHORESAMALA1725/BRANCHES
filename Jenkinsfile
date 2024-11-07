@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage ('this is HOTFIX stage') {
+        stage ('this is MAIN stage') {
             steps {
-                echo "CODE EXECUTED IN HOTFIX BRANCH"
+                echo "CODE EXECUTED IN MAIN BRANCH"
             }
         }
     }
