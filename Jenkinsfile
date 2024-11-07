@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage ('this is main stage') {
+        stage ('this is FEATURE stage') {
             steps {
-                echo "CODE EXECUTED IN MAIN BRANCH"
+                echo "CODE EXECUTED IN FEATURE BRANCH"
             }
         }
     }
