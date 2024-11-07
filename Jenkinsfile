@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    parameters {
+    parameters { //
         string (name: 'USERNAME', defaultValue: 'KISHORE', description: 'ENTER YOUR NAME')
         choice (name: 'BRANCH_NAME', choices: ['main','hotfix','feature'], description: 'ENTER CHOICE')
     }
