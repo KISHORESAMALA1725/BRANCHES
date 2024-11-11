@@ -11,7 +11,7 @@ pipeline {
                         expression {
                             branch_name ==~ /(spscorep|spsodsvcp)/
                         }
-                        environment name: branch, value: spscorep
+                        environment name: "branch", value: "spscorep"
                     }
                 }
                 steps {
