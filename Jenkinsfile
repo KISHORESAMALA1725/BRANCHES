@@ -4,7 +4,7 @@ pipeline {
         stage ("this is expression condition"){
             when {
                 expression{
-                    branch_name == /(hotfix|feature)/
+                    BRANCH_NAME == /(hotfix|feature)/
                 }
             }
             steps {
