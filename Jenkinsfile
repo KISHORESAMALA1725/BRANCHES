@@ -1,27 +1,13 @@
 pipeline {
     agent any
-    parameters { //
-        string (name: 'USERNAME', defaultValue: 'KISHORE', description: 'ENTER YOUR NAME')
-        choice (name: 'BRANCH_NAME', choices: ['main','hotfix','feature'], description: 'ENTER CHOICE')
-    }
     stages {
-        stage ('MAIN-STAGE') {
+        stage ('this is first stage'){
             when {
                 expression {
-                    params.BRANCH_NAME == 'main'
+                    branch_name ==~ /(feature|hotfix)/
                 }
                 steps {
-                    echo "MAIN BRANCH EXECUTED"
-                }
-            }
-        }
-        stage ('HOTFIX-STAGE') {
-            when {
-                expression {
-                    params.BRANCH_NAME == 'hotfix'
-                }
-                steps {
-                    echo "HOTFIX BRANCH EXECUTED"
+                    echo "this branch is executed"
                 }
             }
         }
