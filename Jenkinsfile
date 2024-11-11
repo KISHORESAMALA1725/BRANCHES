@@ -2,7 +2,7 @@
 pipeline {
     agent any 
         environment {
-            branch = spscorep
+            branch = "spscorep"
         }
         stages {
             stage ('this is any off stage') {
