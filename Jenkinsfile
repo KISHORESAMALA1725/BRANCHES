@@ -1,22 +1,18 @@
-// anyOf condition
+// When CONDITION //
 pipeline {
-    agent any 
-        environment {
-            branch = "spscorep"
-        }
-        stages {
-            stage ('this is any off stage') {
-                when {
-                    anyOf{
-                        expression {
-                            branch_name ==~ /(spscorep|spsodsvcp)/
-                        }
-                        environment name: "branch", value: "spscorep"
-                    }
+    agent {
+        label 'java-slave'
+    }
+    stages {
+        stage ('when example'){
+            when {
+                expression {
+                    branch_name == /(feature|hotfix)/
                 }
-                steps {
-                    echo "this spscorep *** spsodsvcp branch are successfull"
-                }
+            }
+            steps {
+                echo "this branch is executed"
             }
         }
     }
+}
