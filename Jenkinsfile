@@ -1,25 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage ('this is first stage') {
+        stage ('This is build-stage'){
             steps {
-                echo "this is first stage"
+                echo "this is build stage"
             }
         }
-        stage ('this is prod stage'){
+        stage ('THIS IS PRODUCTION STAGE'){
             options {
-                timeout(time: 30, unit: 'SECONDS')
+                timeout (time: 45, unit: 'SECONDS')
             }
             input {
-                message "Shall we continue ??"
+                message: shall we continue ??
                 parameters {
-                    string (name: 'USERNAME', defaultValue: 'siva', description: 'Enter your name')
-                    text (name: 'ENTER TEXT HERE', defaultValue: 'enter data', description: "enter some data")
-                    choice (name: 'PUT SOME CHOICE', choices: ['yes','no'], description: 'enter your choice')
+                    string(name: 'NAME', defaultValue: 'SIVA', description: 'ENTER YOUR NAME')
+                    choice(name: "YOUR CHOICE", choices: ['spscores','spsodsvcp'], description: 'choose one value')
+                }
+            }
+            when {
+                expression {
+                    params.YOUR CHOICE ==~ "spscores"
                 }
             }
             steps {
-                echo "enter name ${USERNAME}"
+                echo " SPSCORES is executed"
             }
         }
     }
