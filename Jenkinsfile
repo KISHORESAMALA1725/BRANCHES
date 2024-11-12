@@ -11,7 +11,7 @@ pipeline {
                 timeout(time: 30, unit: 'SECONDS')
             }
             input {
-                message: "Shall we continue ??"
+                message "Shall we continue ??"
                 parameters {
                     string (name: 'USERNAME', defaultValue: 'siva', description: 'Enter your name')
                     text (name: 'ENTER TEXT HERE', defaultValue: 'enter data', description: "enter some data")
