@@ -4,7 +4,7 @@ pipeline {
         label 'java-label'
     }
     environment {
-        DEP_TO: "production"
+        DEP_TO = "production"
     }
     stages {
         stage ('this is when not example') {
