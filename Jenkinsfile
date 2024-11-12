@@ -24,7 +24,7 @@ pipeline {
                         echo "this is scan stage"
                     }
                 }
-                stage ('this is fortify stage') {{}
+                stage ('this is fortify stage') {
                     steps {
                         echo "this is fortify stage"
                     }
