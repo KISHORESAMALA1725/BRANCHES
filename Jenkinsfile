@@ -1,21 +1,18 @@
+// When CONDITION //
 pipeline {
-    agent any
+    agent {
+        label 'java-slave'
+    }
     stages {
-        stage ("this is expression condition"){
+        stage ('when example'){
             when {
-                expression{
-                    BRANCH_NAME == /(hotfix|feature)/
+                expression {
+                    branch_name == /(feature|hotfix)/
                 }
             }
             steps {
-                echo " deployed to production"
+                echo "this branch is executed"
             }
-        }
-        stage  ("this is general stage") {
-            steps {
-            echo " this is normal stage"
-            }
-
         }
     }
 }
