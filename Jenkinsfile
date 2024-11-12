@@ -1,17 +1,21 @@
-// When CONDITION //
+// allOf condition //
 pipeline {
-    agent {
-        label 'java-slave'
+    agent any
+    environment {
+        dep_to = "prodcution"
     }
     stages {
-        stage ('when example'){
+        stage ('this is allOf condition') {
             when {
+                allOf {
+                    environment name: "dep_to", value: "production"
+                }
                 expression {
                     branch_name ==~ /(spscorep|spsodsvcp)/
                 }
             }
-            steps {
-                echo "this branch is executed"
+            steps{
+                echo "this allOf condition is successfull"
             }
         }
     }
