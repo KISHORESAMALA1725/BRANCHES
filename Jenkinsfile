@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'java-slave'
-    }
+    agent any
     parameters {
         string (name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
         choice (name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
