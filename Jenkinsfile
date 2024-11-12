@@ -1,40 +1,29 @@
-// PARALLEL //
+//docker login//
 pipeline {
     agent {
-        label 'java-slave'
+        label 'docker-slave'
     }
     environment {
-        branch = "production"
+        DOCKER_CREDS = credentials('DOCKER_CREDS')
     }
     stages {
-        stage ('this is maven stage'){
+        stage ('Push to docker hub') {
             steps {
-                echo "this is maven stage"
+                echo ***** DOCKER IMAGES *****
+                sh 'docker images'
+                echo ***** DOCKER REMOVE IMAGES *****
+                sh 'docker rmi $(docker images)'       
+                echo ***** DOCKER PULL IMAGES *****
+                sh 'docker pull devopswithcloudhub/nginx:green'
+                echo ***** DOCKER INFO IMAGES *****
+                sh 'docker images'   
+                echo ***** DOCKER RE-TAG IMAGES *****             
+                sh 'docker tag devopswithcloudhub/nginx:green kishoresamala1725/nginx:green'
+                echo ***** DOCKER HUB LOGIN *****                                                       
+                sh 'docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}'
+                echo ***** DOCKER PUSH IMAGES *****   
+                sh 'docker image push kishoresamala1725/nginx:green'             
             }
         }
-        stage ('this is sonar stage'){
-            steps {
-                echo "this is sonar stage"
-            }
-        } 
-        stage ('THIS IS PARALLEL STAGE') {
-            parallel {
-                stage ('this is scan stage') {
-                    steps {
-                        echo "this is scan stage"
-                    }
-                }
-                stage ('this is fortify stage') {
-                    steps {
-                        echo "this is fortify stage"
-                    }
-                }
-                stage ('this is bucket stage') {
-                    steps {
-                        echo "this is bucket stage"
-                    }
-                }
-            }
-        }      
     }
 }
