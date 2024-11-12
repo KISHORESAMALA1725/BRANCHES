@@ -9,9 +9,9 @@ pipeline {
     stages {
         stage('this is first stage') {
             when {
-                expression {
+                // expression {
                     environment name: "DEPLOY_TO", value: "PRODUCTION"
-                }
+                // }
             }
             steps {
                 echo "PRODCUTION CODE DEPLOYED"
