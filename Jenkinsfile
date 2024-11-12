@@ -1,33 +1,29 @@
 pipeline {
-    agent any
+    agent {
+        label 'java-slave'
+    }
     parameters {
-        string (name: 'USERNAME', defaultValue: 'KISHORE', description: 'Please Enter Your Name')
-        choice (name: 'CHOICES', choices: ['yes','no'], description: 'Please enter your choice')
+        string (name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
+        choice (name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
     }
     stages {
-        stage('This is first stage') {
-            steps {
-                echo "This is First stage"
-            }
-        }
-        stage ('This is choice stage') {
+        stage ('this is stage example') {
             when {
                 expression {
-                    params.CHOICES == 'yes'
+                    params.Enter_value == "spscores"
+                }   
+            }
+            steps {
+                echo " ******* SPSCORES EXECUTED *******"
+            }
+        STAGE ('this is second stage')    
+            when {
+                expression {
+                    params.Enter_value == "spsodsvcp"
                 }
             }
             steps {
-                echo "DEPLOYED TO PROD"
-            }
-        }
-        stage ('This is NO stage') {
-            when {
-                expression {
-                    params.CHOICES == 'no'
-                }
-            }
-            steps {
-                echo "DEPLOYED to NON-PROD"
+                echo " ####### SPSODSVCP EXECUTED #######"
             }
         }
     }
