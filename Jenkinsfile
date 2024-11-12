@@ -1,14 +1,17 @@
+// When CONDITION //
 pipeline {
-    agent any
+    agent {
+        label 'java-slave'
+    }
     stages {
-        stage ('this is expression stage') {
+        stage ('when example'){
             when {
                 expression {
-                    branch_name ==~ /(feature|hotfix)/
+                    branch_name == /(spscorep|hotfixspsodsvcp)/
                 }
             }
             steps {
-                echo "this feature/hotfix branch is executed"
+                echo "this branch is executed"
             }
         }
     }
