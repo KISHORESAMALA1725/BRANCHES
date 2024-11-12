@@ -3,8 +3,8 @@ pipeline {
         label 'java-slave'
     }
     parameters {
-        string:(name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
-        choice:(name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
+        string (name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
+        choice (name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
     }
     stages {
         stage ('this is stage example') {
