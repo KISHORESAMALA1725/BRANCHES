@@ -1,4 +1,4 @@
-// when not //
+// anyOf condition //
 pipeline {
     agent {
         label 'java-slave'
@@ -7,14 +7,17 @@ pipeline {
         DEP_TO = "production"
     }
     stages {
-        stage ('this is when not example') { //
+        stage ('This is anyOf condition') {
             when {
-                not {
-                    environment name: "DEP_TO", value: "production"
+                anyOf{
+                    expression {
+                        branch_name ==~ /(spscorep|spsodsvcp)/
+                    }
+                    environment name: "DEP_TO", value: "production1"
                 }
             }
             steps {
-                echo "When not is successfull"
+                echo "any off condition is successfull"
             }
         }
     }
