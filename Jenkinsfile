@@ -7,7 +7,7 @@ pipeline {
         DEP_TO = "production"
     }
     stages {
-        stage ('this is when not example') {
+        stage ('this is when not example') { //
             when {
                 not {
                     environment name: "DEP_TO", value: "production"
