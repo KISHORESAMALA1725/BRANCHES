@@ -1,19 +1,20 @@
-//when environment //
+// when not //
 pipeline {
     agent {
-        label 'java-slave'
+        label 'java-label'
     }
     environment {
-        DEPLOY_TO = "PRODUCTION"
+        DEP_TO: 'production'
     }
     stages {
-        stage('this is first stage') {
+        stage ('this is when not example') {
             when {
-                environment name: "DEPLOY_TO", value: "PRODUCTION"
+                not {
+                    environment name: "DEP_TO", value: "production"
+                }
             }
             steps {
-                echo "PRODCUTION CODE DEPLOYED"
-
+                echo "When not is successfull"
             }
         }
     }
