@@ -1,17 +1,21 @@
-// When CONDITION //
+//when environment //
 pipeline {
     agent {
         label 'java-slave'
     }
+    environment {
+        DEPLOY_TO = "PRODUCTION"
+    }
     stages {
-        stage ('when example'){
+        stage('this is first stage') {
             when {
                 expression {
-                    branch_name ==~ /(spscorep|spsodsvcp)/
+                    environment name: "DEPLOY_TO", value: "PRODUCTION"
                 }
             }
             steps {
-                echo "this branch is executed"
+                echo "PRODCUTION CODE DEPLOYED"
+
             }
         }
     }
