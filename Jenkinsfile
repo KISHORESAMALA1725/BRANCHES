@@ -16,7 +16,8 @@ pipeline {
             steps {
                 echo " ******* SPSCORES EXECUTED *******"
             }
-        STAGE ('this is second stage')    
+        }
+        stage ('this is second stage')    
             when {
                 expression {
                     params.Enter_value == "spsodsvcp"
@@ -24,7 +25,6 @@ pipeline {
             }
             steps {
                 echo " ####### SPSODSVCP EXECUTED #######"
-            }
-        }
+            }        
     }
 }
