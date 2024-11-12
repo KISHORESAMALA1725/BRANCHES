@@ -12,7 +12,7 @@ pipeline {
                 echo "this is maven stage"
             }
         }
-        stage ('this is sonar stage'){
+        stage ('this is sonar stage'){{}
             steps {
                 echo "this is sonar stage"
             }
