@@ -1,29 +1,23 @@
 pipeline {
     agent any
+    parameters {
+        string (name: 'USERNAME', defaultValue: 'KISHORE', description: 'Enter your name')
+        choice (name: 'DeployToPROD', choices: ['yes','no'], description: 'choose your option')  
+    }
     stages {
-        stage ('This is build-stage'){
-            steps {
+        stage ('this is build'){
+            steps{
                 echo "this is build stage"
             }
         }
-        stage ('THIS IS PRODUCTION STAGE'){
-            options {
-                timeout (time: 45, unit: 'SECONDS')
-            }
-            input {
-                message "shall we continue ??"
-                parameters {
-                    string(name: 'NAME', defaultValue: 'SIVA', description: 'ENTER YOUR NAME')
-                    choice(name: 'YOUR_CHOICE', choices: ['spscores','spsodsvcp'], description: 'choose one value')
-                }
-            }
+        stage ('this to deploy in prod-stage') {
             when {
-                expression {
-                    params.your_choice == "spscores"
+                expression{
+                    params.DeployToPROD == 'yes'
                 }
             }
             steps {
-                echo " SPSCORES is executed"
+                echo "Deployment is done on PROD-ENV"
             }
         }
     }
