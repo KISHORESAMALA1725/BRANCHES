@@ -1,22 +1,35 @@
-// allOf condition //
+// TAG for STAGING //
 pipeline {
-    agent any
+    agent {
+        label 'java-slave'
+    }
     environment {
-        dep_to = "prodcution"
+        dep_to = "production"
     }
     stages {
-        stage ('this is allOf condition') {
-            when {
-                allOf {
-                    environment name: "dep_to", value: "production"
-                }
-                expression {
-                    branch_name ==~ /(spscorep|spsodsvcp)/
-                }
-            }
-            steps{
-                echo "this allOf condition is successfull"
+        stage ('this is build stage') {
+            steps {
+                echo "build stage"
             }
         }
+        stage ('this is sonar stage') {
+            steps {
+                echo "sonar-stage"
+            }
+        }
+        stage ('this is nexus stage') {
+            steps {
+                echo "nexus-stage"
+            }
+        }
+        stage ('this is STAGE-ENV'){
+            when {
+                tag patteren: "V\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
+            }
+            steps {
+                echo "Deployed to STAGE-ENV"
+
+            }
+        }        
     }
 }
