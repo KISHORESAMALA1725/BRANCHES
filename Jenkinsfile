@@ -1,17 +1,23 @@
-// When CONDITION //
+// anyOf condition //
 pipeline {
     agent {
         label 'java-slave'
     }
+    environment {
+        DEP_TO = "production"
+    }
     stages {
-        stage ('when example'){
+        stage ('This is anyOf condition') {
             when {
-                expression {
-                    branch_name ==~ /(spscorep|spsodsvcp)/
+                anyOf{
+                    expression {
+                        branch_name ==~ /(spscorep|spsodsvcp)/
+                    }
+                    environment name: "DEP_TO", value: "production1"
                 }
             }
             steps {
-                echo "this branch is executed"
+                echo "any off condition is successfull"
             }
         }
     }
