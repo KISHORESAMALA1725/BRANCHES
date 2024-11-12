@@ -1,23 +1,23 @@
-// anyOf condition //
+// allOf condition //
 pipeline {
     agent {
         label 'java-slave'
     }
     environment {
-        DEP_TO = "production"
+        dep_to = "prodcution"
     }
     stages {
-        stage ('This is anyOf condition') {
+        stage ('this is allOf condition') {
             when {
-                anyOf{
-                    expression {
-                        branch_name ==~ /(spscorep|spsodsvcp)/
-                    }
-                    environment name: "DEP_TO", value: "production1"
+                allOf {
+                    environment name: "dep_to", value: "production"
+                }
+                expression {
+                    branch_name ==~ /(spscorep|spsodsvcp)/
                 }
             }
-            steps {
-                echo "any off condition is successfull"
+            steps{
+                echo "this allOf condition is successfull"
             }
         }
     }
