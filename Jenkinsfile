@@ -14,12 +14,12 @@ pipeline {
                 message "shall we continue ??"
                 parameters {
                     string(name: 'NAME', defaultValue: 'SIVA', description: 'ENTER YOUR NAME')
-                    choice(name: "YOUR CHOICE", choices: ['spscores','spsodsvcp'], description: 'choose one value')
+                    choice(name: 'YOUR_CHOICE', choices: ['spscores','spsodsvcp'], description: 'choose one value')
                 }
             }
             when {
                 expression {
-                    params.YOUR CHOICE ==~ "spscores"
+                    params.YOUR_CHOICE == "spscores"
                 }
             }
             steps {
