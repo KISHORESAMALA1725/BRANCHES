@@ -15,7 +15,7 @@ pipeline {
                 parameters {
                     string (name: 'USERNAME', defaultValue: 'siva', description: 'Enter your name')
                     text (name: 'ENTER TEXT HERE', defaultValue: 'enter data', description: "enter some data")
-                    choice (name: 'PUT SOME CHOICE', choices: 'yes\nno', description: 'enter your choice')
+                    choice (name: 'PUT SOME CHOICE', choices: ['yes','no'], description: 'enter your choice')
                 }
             }
             steps {
