@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('this is first stage') {
             when {
-                environment: name: "DEPLOY_TO", value: "PRODUCTION"
+                environment name: "DEPLOY_TO", value: "PRODUCTION"
             }
             steps {
                 echo "PRODCUTION CODE DEPLOYED"
