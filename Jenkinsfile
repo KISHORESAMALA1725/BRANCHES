@@ -13,9 +13,9 @@ pipeline {
             input {
                 message: "Shall we continue ??"
                 parameters {
-                    string: (name: 'USERNAME', defaultValue: 'siva', description: 'Enter your name')
-                    text: (name: 'ENTER TEXT HERE', defaultValue: 'enter data', description: "enter some data")
-                    choice: (name: 'PUT SOME CHOICE', choices: 'yes\nno', description: 'enter your choice')
+                    string (name: 'USERNAME', defaultValue: 'siva', description: 'Enter your name')
+                    text (name: 'ENTER TEXT HERE', defaultValue: 'enter data', description: "enter some data")
+                    choice (name: 'PUT SOME CHOICE', choices: 'yes\nno', description: 'enter your choice')
                 }
             }
             steps {
