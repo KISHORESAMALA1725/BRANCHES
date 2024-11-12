@@ -1,22 +1,30 @@
-// allOf condition //
 pipeline {
-    agent any
-    environment {
-        dep_to = "prodcution"
+    agent {
+        label 'java-slave'
+    }
+    parameters {
+        string (name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
+        choice (name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
     }
     stages {
-        stage ('this is allOf condition') {
+        stage ('this is stage example') {
             when {
-                allOf {
-                    environment name: "dep_to", value: "production"
-                }
                 expression {
-                    branch_name ==~ /(spscorep|spsodsvcp)/
-                }
+                    params.Enter_value == "spscores"
+                }   
             }
-            steps{
-                echo "this allOf condition is successfull"
+            steps {
+                echo " ******* SPSCORES EXECUTED *******"
             }
         }
+        stage ('this is second stage')    
+            when {
+                expression {
+                    params.Enter_value == "spsodsvcp"
+                }
+            }
+            steps {
+                echo " ####### SPSODSVCP EXECUTED #######"
+            }        
     }
 }
