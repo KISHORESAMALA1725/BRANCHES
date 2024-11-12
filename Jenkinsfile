@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('this is prod stage'){
             options {
-                timeout: (time: 30, unit: 'SECONDS')
+                timeout(time: 30, unit: 'SECONDS')
             }
             input {
                 message: "Shall we continue ??"
