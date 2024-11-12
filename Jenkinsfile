@@ -12,7 +12,7 @@ pipeline {
                 echo "***** DOCKER IMAGES *****"
                 sh "docker images"
                 echo "***** DOCKER REMOVE IMAGES *****"
-                sh "docker container remove ${docker ps -aq}"
+                // sh "docker container remove ${docker ps -aq}"
                 sh "docker rmi ${docker images}"       
                 echo "***** DOCKER PULL IMAGES *****"
                 sh "docker pull devopswithcloudhub/nginx:green"
