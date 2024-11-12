@@ -1,7 +1,7 @@
 // when not //
 pipeline {
     agent {
-        label 'java-label'
+        label 'java-slave'
     }
     environment {
         DEP_TO = "production"
