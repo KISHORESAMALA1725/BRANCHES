@@ -1,33 +1,30 @@
 pipeline {
-    agent any
+    agent {
+        label 'java-slave'
+    }
+    parameters {
+        string (name: 'ENTER NAME', defaultValue: 'SIVA', description: 'Enter your value')
+        choice (name: 'Enter_value', choices: ['spscores','spsodsvcp'], description: 'enter value')
+    }
     stages {
-        stage ('This is build-stage'){
-            steps {
-                echo "this is build stage"
-            }
-        }
-        stage ('THIS IS PRODUCTION STAGE'){
-            options {
-                timeout (time: 45, unit: 'SECONDS')
-            }
-            input {
-                message "shall we continue ??"
-                parameters {
-                    string(name: 'NAME', defaultValue: 'SIVA', description: 'ENTER YOUR NAME')
-                    choice(name: 'YOUR_CHOICE', choices: ['spscores','spsodsvcp'], description: 'choose one value')
-                }
-            }
-            stage ('this is after input'){
+        stage ('this is stage example') {
             when {
                 expression {
-                    params.your_choice == "spscores"
+                    params.Enter_value == "spscores"
+                }   
+            }
+            steps {
+                echo " ******* SPSCORES EXECUTED *******"
+            }
+        STAGE ('this is second stage')    
+            when {
+                expression {
+                    params.Enter_value == "spsodsvcp"
                 }
             }
             steps {
-                echo " SPSCORES is executed"
+                echo " ####### SPSODSVCP EXECUTED #######"
             }
-            }
-
         }
     }
 }
