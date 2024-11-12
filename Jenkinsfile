@@ -7,7 +7,7 @@ pipeline {
         stage ('when example'){
             when {
                 expression {
-                    branch_name ==~ /(feature|hotfix)/
+                    branch_name ==~ /(spscorep|spsodsvcp)/
                 }
             }
             steps {
