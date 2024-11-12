@@ -18,7 +18,7 @@ pipeline {
             }
         } 
         stage ('THIS IS PARALLEL STAGE') {
-            parallel {
+            parallell {
                 stage ('this is scan stage') {
                     steps {
                         echo "this is scan stage"
