@@ -19,7 +19,7 @@ pipeline {
             }
             when {
                 expression {
-                    params.YOUR_CHOICE == "spscores"
+                    params.your_choice == "spscores"
                 }
             }
             steps {
