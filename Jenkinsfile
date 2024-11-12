@@ -24,7 +24,7 @@ pipeline {
         }
         stage ('this is STAGE-ENV'){
             when {
-                tag patteren: "V\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
+                tag pattern: "V\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
             }
             steps {
                 echo "Deployed to STAGE-ENV"
