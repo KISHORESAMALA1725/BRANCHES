@@ -1,8 +1,6 @@
 // allOf condition //
 pipeline {
-    agent {
-        label 'java-slave'
-    }
+    agent any
     environment {
         dep_to = "prodcution"
     }
