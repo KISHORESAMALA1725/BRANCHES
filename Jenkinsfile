@@ -1,35 +1,40 @@
-// TAG for STAGING //
+// PARALLEL //
 pipeline {
     agent {
         label 'java-slave'
     }
     environment {
-        dep_to = "production"
+        branch = "production"
     }
     stages {
-        stage ('this is build stage') {
+        stage ('this is maven stage'){
             steps {
-                echo "build stage"
+                echo "this is maven stage"
             }
         }
-        stage ('this is sonar stage') {
+        stage ('this is sonar stage'){
             steps {
-                echo "sonar-stage"
+                echo "this is sonar stage"
             }
-        }
-        stage ('this is nexus stage') {
-            steps {
-                echo "nexus-stage"
+        } 
+        stage ('THIS IS PARALLEL STAGE') {
+            parallel {
+                stage ('this is scan stage') {
+                    steps {
+                        echo "this is scan stage"
+                    }
+                }
+                stage ('this is fortify stage') {
+                    steps {
+                        echo "this is fortify stage"
+                    }
+                }
+                stage ('this is bucket stage') {
+                    steps {
+                        echo "this is bucket stage"
+                    }
+                }
             }
-        }
-        stage ('this is STAGE-ENV'){
-            when {
-                tag pattern: "V\\d{1,2}.\\d{1,2}.\\d{1,2}", comparator: "REGEXP"
-            }
-            steps {
-                echo "Deployed to STAGE-ENV"
-
-            }
-        }        
+        }      
     }
 }
