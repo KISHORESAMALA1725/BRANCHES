@@ -11,7 +11,7 @@ pipeline {
                 timeout (time: 45, unit: 'SECONDS')
             }
             input {
-                message shall we continue ??
+                message "shall we continue ??"
                 parameters {
                     string(name: 'NAME', defaultValue: 'SIVA', description: 'ENTER YOUR NAME')
                     choice(name: "YOUR CHOICE", choices: ['spscores','spsodsvcp'], description: 'choose one value')
